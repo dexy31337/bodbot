@@ -11,9 +11,11 @@ bot = Bot(token=TOKEN, api_url_base=API_URL_BASE)
 def message_cb(bot, event):
     print(event)
     if event.data['chat']['type'] == "private" and not event.text.startswith('/'): 
-        bot.send_text(chat_id=event.from_chat, text=event.data['from']['firstName']+", Ваше обращение принято и передано в дежурную группу БОД. Мы уже спешим на помощь!")
+        bot.send_text(chat_id=event.from_chat, text=event.data['from']['firstName']+", cпасибо за обращение.\nСейчас я найду специалиста БОД, который вам поможет!")
         msgtext = "Cообщение от @[" + event.data['from']['userId'] + "]\n\n" + event.text
         bot.send_text(chat_id=CHATID, text=msgtext)
+    if event.data['chat']['type'] == "private" and event.text == "/start":
+        bot.send_text(chat_id=event.from_chat,text="Привет, я РоБОД!\n Чем могу помочь? 🤖")
 
 bot.dispatcher.add_handler(MessageHandler(callback=message_cb))
 bot.start_polling()
