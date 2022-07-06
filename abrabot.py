@@ -15,7 +15,7 @@ def message_cb(bot, event):
         msgtext = "Cообщение от @[" + event.data['from']['userId'] + "]\n\n" + event.text
         bot.send_text(chat_id=CHATID, text=msgtext)
     if event.data['chat']['type'] == "private" and event.text == "/start":
-        bot.send_text(chat_id=event.from_chat,text="Привет, я РоБОД!\n Чем могу помочь? 🤖")
+        bot.send_text(chat_id=event.from_chat,text="Привет, я РоБОД!\nЧем могу помочь? 🤖")
 
 bot.dispatcher.add_handler(MessageHandler(callback=message_cb))
 bot.start_polling()
